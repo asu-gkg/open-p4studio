@@ -1,0 +1,9 @@
+global-options:
+  asic: true
+features:
+  bf-platforms:
+    bsp-path: /home/admin/8.9.2/packages/bf-platforms-8.9.2.tgz # CHANGE ME
+  p4-examples:
+  - p4-16-programs
+architectures:
+- tofino
