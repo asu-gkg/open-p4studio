@@ -15,6 +15,39 @@ else()
     message(STATUS "P4C submodule already initialized.")
 endif()
 
+# Apply patches to p4c submodule if they exist
+set(P4C_PATCH_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../patches/p4c")
+if(EXISTS "${P4C_PATCH_DIR}")
+    file(GLOB P4C_PATCHES "${P4C_PATCH_DIR}/*.patch")
+    if(P4C_PATCHES)
+        message(STATUS "Applying patches to P4C submodule...")
+        foreach(PATCH_FILE ${P4C_PATCHES})
+            message(STATUS "Applying patch: ${PATCH_FILE}")
+            execute_process(
+                COMMAND git apply --ignore-whitespace ${PATCH_FILE}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/p4c
+                RESULT_VARIABLE PATCH_RESULT
+                ERROR_QUIET
+            )
+            if(NOT PATCH_RESULT EQUAL "0")
+                # Try to check if patch is already applied
+                execute_process(
+                    COMMAND git apply --check --reverse ${PATCH_FILE}
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/p4c
+                    RESULT_VARIABLE REVERSE_CHECK_RESULT
+                    OUTPUT_QUIET
+                    ERROR_QUIET
+                )
+                if(REVERSE_CHECK_RESULT EQUAL "0")
+                    message(STATUS "Patch ${PATCH_FILE} already applied, skipping.")
+                else()
+                    message(WARNING "Failed to apply patch ${PATCH_FILE}, result: ${PATCH_RESULT}")
+                endif()
+            endif()
+        endforeach()
+    endif()
+endif()
+
 
 add_definitions("-DBAREFOOT_INTERNAL=1")
 add_definitions("-DHAVE_JBAY=1")
