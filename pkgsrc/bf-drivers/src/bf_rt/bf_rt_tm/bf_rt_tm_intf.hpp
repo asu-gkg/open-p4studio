@@ -1518,7 +1518,7 @@ class TrafficMgrIntf : public ITrafficMgrIntf {
   bf_status_t bfTMPortQMappingGet(bf_dev_id_t dev,
                                   bf_dev_port_t port,
                                   uint8_t *q_count,
-                                  uint8_t *q_mapping) override;
+                                  uint8_t *q_mapping);
   bf_status_t bfTMPortQMappingSet(bf_dev_id_t dev,
                                   bf_dev_port_t port,
                                   uint8_t q_count,

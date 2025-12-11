@@ -552,7 +552,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::preGlobalRidParamSet(
   // First mark the PRE global rid attribute active by adding it to
   // the active attibutes set. No need to check if it is present already
   // or for any errors.
-  this->active_pre_attributes_.insert(PREAttributeType::PRE_GLOBAL_RID);
+  this->active_pre_attributes_.insert(this->PREAttributeType::PRE_GLOBAL_RID);
 
   // Set the value
   global_rid_ = global_rid;
@@ -573,7 +573,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::preGlobalRidParamGet(
 
   // Check whether global rid attribute is part of the active attributes set
   auto elem =
-      this->active_pre_attributes_.find(PREAttributeType::PRE_GLOBAL_RID);
+      this->active_pre_attributes_.find(this->PREAttributeType::PRE_GLOBAL_RID);
   if (elem == this->active_pre_attributes_.end()) {
     // No need to log error here as this could be valid case
     return BF_OBJECT_NOT_FOUND;
@@ -590,7 +590,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::prePortProtectionParamSet(
   // the active attibutes set. No need to check if it is present already
   // or for any errors.
   this->active_pre_attributes_.insert(
-      PREAttributeType::PRE_PORT_PROTECTION);
+      this->PREAttributeType::PRE_PORT_PROTECTION);
 
   // Set the value
   port_protection_enable_ = enable;
@@ -612,7 +612,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::prePortProtectionParamGet(
   // Check whether port protection attribute is part of the active attributes
   // set
   auto elem = this->active_pre_attributes_.find(
-      PREAttributeType::PRE_PORT_PROTECTION);
+      this->PREAttributeType::PRE_PORT_PROTECTION);
   if (elem == this->active_pre_attributes_.end()) {
     // No need to log error here as this could be valid case
     return BF_OBJECT_NOT_FOUND;
@@ -629,7 +629,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::preFastFailoverParamSet(
   // the active attibutes set. No need to check if it is present already
   // or for any errors.
   this->active_pre_attributes_.insert(
-      PREAttributeType::PRE_FAST_FAILOVER);
+      this->PREAttributeType::PRE_FAST_FAILOVER);
 
   // Set the value
   fast_failover_enable_ = enable;
@@ -650,7 +650,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::preFastFailoverParamGet(
 
   // Check whether fast failover attribute is part of the active attributes set
   auto elem = this->active_pre_attributes_.find(
-      PREAttributeType::PRE_FAST_FAILOVER);
+      this->PREAttributeType::PRE_FAST_FAILOVER);
   if (elem == this->active_pre_attributes_.end()) {
     // No need to log error here as this could be valid case
     return BF_OBJECT_NOT_FOUND;
@@ -667,7 +667,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::preMaxNodesBeforeYieldParamSet(
   // the active attibutes set. No need to check if it is present already
   // or for any errors.
   this->active_pre_attributes_.insert(
-      PREAttributeType::PRE_MAX_NODES_BEFORE_YIELD);
+      this->PREAttributeType::PRE_MAX_NODES_BEFORE_YIELD);
 
   // Set the value
   max_nodes_before_yield_ = count;
@@ -690,7 +690,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::preMaxNodesBeforeYieldParamGet(
   // Check whether max nodes before yield attribute is part of the active
   // attributes set
   auto elem = this->active_pre_attributes_.find(
-      PREAttributeType::PRE_MAX_NODES_BEFORE_YIELD);
+      this->PREAttributeType::PRE_MAX_NODES_BEFORE_YIELD);
   if (elem == this->active_pre_attributes_.end()) {
     // No need to log error here as this could be valid case
     return BF_OBJECT_NOT_FOUND;
@@ -707,7 +707,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::preMaxNodeThresholdParamSet(
   // the active attibutes set. No need to check if it is present already
   // or for any errors.
   this->active_pre_attributes_.insert(
-      PREAttributeType::PRE_MAX_NODE_THRESHOLD);
+      this->PREAttributeType::PRE_MAX_NODE_THRESHOLD);
 
   // Set the value
   max_node_threshold_node_count_ = node_count;
@@ -731,7 +731,7 @@ bf_status_t BfRtTableAttributesPREDeviceConfig::preMaxNodeThresholdParamGet(
   // Check whether max node threshold attribute is part of the active attributes
   // set
   auto elem = this->active_pre_attributes_.find(
-      PREAttributeType::PRE_MAX_NODE_THRESHOLD);
+      this->PREAttributeType::PRE_MAX_NODE_THRESHOLD);
   if (elem == this->active_pre_attributes_.end()) {
     // No need to log error here as this could be valid case
     return BF_OBJECT_NOT_FOUND;
